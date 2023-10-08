@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>calculator</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+width:100%;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+        }
+        .cal{
+            padding: 10px;
+            border: 1px solid black;
+            display:grid;
+            align-items: center;
+            justify-content: center;
+        }
+        .key{
+       padding-top: 10px;
+        }
+        input{
+            border:2px solid black;
+            height:50px;
+            width:270px;
+        }
+        button{
+            width:60px;
+            height: 60px;
+            margin:3px;
+
+        }
+    </style>
+  </head>
+  <body>
+   <div class="cal">
+<input type="text" id="input" placeholder="0">
+<div class="key">
+    <button>AC</button>
+    <button>DEL</button>
+    <button>%</button>
+    <button>sqrt</button>
+</div>
+<div >
+    <button>tan</button>
+    <button>sin</button>
+    <button>cos</button>
+    <button>/</button>
+</div>
+<div >
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>*</button>
+</div>
+<div >
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button>-</button>
+</div>
+<div >
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <button>+</button>
+</div>
+<div >
+<button>.</button>
+<button>0</button>
+<button>History</button>
+<button>=</button>
+</div>
+
+   </div>
+   <script>
+let input= document.getElementById('input');
+let btn = document.querySelectorAll('button');
+let str = "";
+let history = [];
+let arr = Array.from(btn);
+arr.forEach(button =>{
+    button.addEventListener("click",(e)=>{
+       if( e.target.innerHTML== "="){
+      
+        str= eval(str);
+        if(str=="Infinity" || str=="-Infinity"){
+            input.value="Math Error";
+        }
+        else{
+        input.value=str;
+        history.push(str);
+    }
+       }
+      else if(e.target.innerHTML=="AC"){
+        str="";
+        input.value=str; 
+      }
+      else if(e.target.innerHTML=="DEL"){
+  str = str.substring(0,str.length-1);
+  input.value=str;
+      }
+      else if(e.target.innerHTML=="sqrt"){
+        str= Math.sqrt(str).toString();
+        input.value=str;
+      }
+      else if(e.target.innerHTML=="sin"){
+        str= Math.sin(str);
+        input.value=str;
+      }
+      else if(e.target.innerHTML=="cos"){
+        str= Math.cos(str);
+        input.value=str;
+      }
+      else if(e.target.innerHTML=="History"){
+    
+        input.value= history;
+      }
+      else if(e.target.innerHTML=="tan"){
+        str= Math.tan(str);
+        input.value=str;
+      }
+       else{
+        str = str + e.target.innerHTML;
+        input.value= str; 
+       }
+    })
+
+    })
+   
+
+   </script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
